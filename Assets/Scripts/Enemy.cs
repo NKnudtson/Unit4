@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 2.5f;
+    public float speed;
     private Rigidbody enemyRB;
     private GameObject player;
 
@@ -20,5 +20,9 @@ public class Enemy : MonoBehaviour
     {
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
         enemyRB.AddForce(lookDirection * speed * Time.deltaTime);
+        if (transform.position.y < -10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
